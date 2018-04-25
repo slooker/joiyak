@@ -1,0 +1,25 @@
+{
+  "name": "joiyak",
+  "version": "1.0.0",
+  "description": "An app that takes a Joi schema and outputs various ORM schemas",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc --all mocha test/**/*.spec.js --exit"
+  },
+  "keywords": [
+    "joi",
+    "mongoose"
+  ],
+  "author": "Shawn Looker",
+  "license": "MIT",
+  "devDependencies": {
+    "joi": "^13.2.0",
+    "mocha": "^5.1.1",
+    "nyc": "^11.7.1",
+    "should": "^13.2.1"
+  },
+  "dependencies": {
+    "eslint": "^4.19.1",
+    "mongoose": "^5.0.16"
+  }
+}
