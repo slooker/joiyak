@@ -4,7 +4,8 @@
   "description": "An app that takes a Joi schema and outputs various ORM schemas",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --all mocha test/**/*.spec.js --exit"
+    "test": "nyc --all mocha test/**/*.spec.js --exit",
+    "shorttest": "mocha test/**/*.spec.js --exit"
   },
   "keywords": [
     "joi",
@@ -20,6 +21,7 @@
   },
   "dependencies": {
     "eslint": "^4.19.1",
-    "mongoose": "^5.0.16"
+    "mongoose": "^5.0.16",
+    "sequelize": "^4.37.6"
   }
 }

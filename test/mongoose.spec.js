@@ -7,14 +7,14 @@ const Joiyak = require('../index')
 const mongoose = require('mongoose')
 
 const joiSchema = Joi.object().keys({
-  username: Joi.string().alphanum().min(3).max(30).required(),
-  fullname: Joi.string().min(3).max(30).required(),
-  email: Joi.string().email(),
-  ownedItemCount: Joi.number().integer().min(0).max(10),
-  dollars: Joi.number().precision(2),
+  // username: Joi.string().alphanum().min(3).max(30).required(),
+  // fullname: Joi.string().min(3).max(30).required(),
+  // email: Joi.string().email(),
+  // ownedItemCount: Joi.number().integer().min(0).max(10),
+  // dollars: Joi.number().precision(2),
   floatNumber: Joi.number().precision(5),
-  ownsThings: Joi.array().items(Joi.object({ body: Joi.string(), date: Joi.date() })),
-  type: Joi.string().valid('start', 'stop', 'setTime'),
+  // ownsThings: Joi.array().items(Joi.object({ body: Joi.string(), date: Joi.date() })),
+  // type: Joi.string().valid('start', 'stop', 'setTime'),
 })
 const User = mongoose.model('User', Joiyak.toMongoose(joiSchema))
 
@@ -73,7 +73,7 @@ describe('mongoose', () => {
     secondUserError.name.should.equal('ValidationError')
   })
 
-  it('should validate precision numbers', () => {
+  it.only('should validate precision numbers', () => {
     const firstUser = new User({
       username: 'Shawn',
       fullname: 'shawn looker',
@@ -87,7 +87,11 @@ describe('mongoose', () => {
       fullname: 'shawn looker',
       floatNumber: 1.2345678
     })
+
+    console.log('Regex test is passing: ', new RegExp('^\d+(\.\d{0,5})?$').test(1.23456789))
+
     const secondUserError = secondUser.validateSync()
+    console.log('second user error: ', secondUserError)
     secondUserError.errors.floatNumber.properties.type.should.equal('user defined')
     secondUserError.name.should.equal('ValidationError')
   })
